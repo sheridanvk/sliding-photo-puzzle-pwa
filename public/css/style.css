@@ -1,0 +1,112 @@
+/* styles */
+/* called by your view template */
+
+:root {
+  --game-aspect-ratio: 1;
+  --img-url:'';
+}
+
+body {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  touch-action:none;
+  display: flex;
+  flex-direction: column;
+/*   height: 100vh; */
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  width: 100%;
+  height: 10vh;
+}
+
+#randomize-button {
+  width: 200px;
+  margin: 1em auto;
+  text-align: center;
+  background: cadetblue;
+  border-radius: 3px;
+  padding: 0.5em;
+  box-shadow: 1px 1px darkblue;
+  color: white;    
+  font-size: 1em;
+  border: none;
+}
+
+
+#game-won {
+  border-radius: 3px;
+  display: block;
+  background-color: cornflowerblue;
+  padding: 0.5em;
+  width: 100%;
+  text-align: center;
+}
+
+#game-area {
+  display: grid;
+  grid-gap: 3px;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  
+  position: relative;
+  margin: 1em auto;
+  
+  height: 80vh;
+  width: calc(80vh * var(--game-aspect-ratio)) ;
+  background-size: calc(80vh * var(--game-aspect-ratio)) 80vh;
+  user-select: none;
+}
+
+@media screen and (max-width: 600px) {
+  #game-area {
+    width: 90vw;
+    height: calc(90vw / var(--game-aspect-ratio)) ;
+    background-size: 90vw calc(90vw / var(--game-aspect-ratio));
+  }
+}
+
+.number {
+  color: white;
+  mix-blend-mode: difference;
+  position: relative;
+  padding: 0.25em;
+  font-size: 1.2em;
+  text-shadow: darkgrey 1px 1px;
+  pointer-events: none;
+}
+
+.tile {
+  background-image: var(--img-url);
+  background-size: inherit;
+  height:100%;
+  width:100%;
+  background-position: inherit;
+  border-radius: 5px;
+}
+
+.tile.moving {
+  transition: transform 0.15s ease-in;
+}
+
+body.winning-animation {
+  background: linear-gradient(269deg, #28c69e, #d07ce8);
+  background-size: 400% 400%;
+  -webkit-animation: winning-animation 1s ease 10;
+  animation: winning-animation 1s ease 10;
+}
+
+@-webkit-keyframes winning-animation {
+    0%{background-position:0% 52%}
+    50%{background-position:100% 49%}
+    100%{background-position:0% 52%}
+}
+@keyframes winning-animation { 
+    0%{background-position:0% 52%}
+    50%{background-position:100% 49%}
+    100%{background-position:0% 52%}
+}
